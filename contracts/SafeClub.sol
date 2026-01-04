@@ -3,6 +3,9 @@ pragma solidity ^0.8.0;
 
 
 contract SafeClub{
+    address private immutable owner;
+    address public tresorier;
+    uint256 public tresorierBalance;
     address[] public members;
     mapping (address => bool) public isMember;
     mapping (address => bool) public hasVoted;
@@ -42,9 +45,39 @@ contract SafeClub{
         _;
     }
 
-
+   event MemberAdded(address indexed member);
+   event MemberRemoved(address indexed member);
+   event SetTresorier(address indexed tresorier);
    event Voted(uint256 indexed proposalId, address indexed voter, bool vote);
-
+   
+   
+    function setTresorier(address Tresorier) public onlyOwner{
+        require(Tresorier != address(0), "Invalid address: Zero address not allowed");
+        tresorier = Tresorier;
+        emit SetTresorier(Tresorier);
+    }
+    function addMember(address Member) public onlyOwner {
+        require(!isMember[Member], "Member already exists");
+        require(Member != address(0), "Invalid address: Zero address not allowed");
+        members.push(Member);
+        isMember[Member] = true;
+        emit MemberAdded(Member);
+    }
+    function removeMember(address member) public onlyOwner {
+        require(isMember[member], "member does not exist");
+        uint256 index = 0;
+        uint256 len = members.length;
+        for (uint256 i = 0; i < len; i++) {
+            if (members[i] == member) {
+                index = i;
+                break;
+            }
+        }
+        members[index] = members[members.length - 1];
+        members.pop();
+        isMember[member] = false;
+        emit MemberRemoved(member);
+    }
 
    function voter(uint256 _proposalId, bool _vote) public onlyMember {
         require(block.number <= proposals[_proposalId].deadline, "Vote ended");
@@ -61,3 +94,4 @@ contract SafeClub{
     }
 
 }
+
