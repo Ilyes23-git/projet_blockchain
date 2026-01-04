@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/SafeClub.sol": "SafeClub"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/SafeClub.sol": {
+			"keccak256": "0x12b772b9439c5f6c3471a1b5c22142e7551dfef7ccb060f63bbe262ed2348370",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b1059d83a49b61b92f2d92b149aaea79501409db86a3f15f61eef872480fd641",
+				"dweb:/ipfs/QmW8UMi3ui5taYzTH57WBZSNU9egCj2Er7UbCvTkeZVQZA"
+			]
+		}
+	},
+	"version": 1
+}
